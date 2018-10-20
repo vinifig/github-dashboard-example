@@ -6,7 +6,7 @@ export default function Header () {
     return (
         <div className="Header">
             <img src={logo} className="Header-logo" alt="logo" />
-            <h2 className="Header-title" >Welcome to Razzle</h2>
+            <h2 className="Header-title" >Welcome to <br/>GitHub Dashboard</h2>
         </div>
     );
 }
