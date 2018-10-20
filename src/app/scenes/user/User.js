@@ -5,7 +5,6 @@ import './User.css';
 
 class User extends Component {
   render() {
-    console.log(this);
     let { match } = this.props;
     return (
       <div>

@@ -4,5 +4,5 @@
 
 ## TODO
 
-* Verify if redux can optimize the project and storage/fetch of properties
-    * With redux is possible to store github users in a shared status
+* verify razzle vulnerability
+    * [https://github.com/jaredpalmer/razzle/issues/757](https://github.com/jaredpalmer/razzle/issues/757)
