@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import './Home.css';
+import './Repository.css';
 
-class Home extends Component {
+class Repository extends Component {
   render() {
     return (
       <div>teste</div>
@@ -10,4 +10,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Repository;
