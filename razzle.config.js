@@ -1,7 +1,7 @@
 "use strict";
 
 const autoprefixer = require("autoprefixer");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Visualizer = require("webpack-visualizer-plugin");
 
 module.exports = {
@@ -48,23 +48,20 @@ module.exports = {
         // For development, include source map
         appConfig.module.rules.push({
           test: /.scss$/,
-          use: ["style-loader", cssLoader, postCSSLoader, sassLoader]
+          use: ["style-loader", MiniCssExtractPlugin.loader, cssLoader, postCSSLoader, sassLoader]
         });
       } else {
         // For production, extract CSS
         appConfig.module.rules.push({
           test: /.scss$/,
-          use: ExtractTextPlugin.extract({
-            fallback: "style-loader",
-            use: [cssLoader, postCSSLoader, sassLoader]
-          })
+          use: ["style-loader", cssLoader, postCSSLoader, sassLoader]
         });
 
         appConfig.plugins.push(
           new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
           new webpack.IgnorePlugin(/moment/, /react-kronos/),
           new Visualizer(),
-          new ExtractTextPlugin( "bundle.css" )
+          new MiniCssExtractPlugin( "bundle.css" )
         );
       }
     } else {

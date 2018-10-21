@@ -11,6 +11,7 @@ const appRoute = basePath;
 const apiRoute = '/api';
 
 server.disable('x-powered-by');
+server.use('/static', express.static(`${process.env.RAZZLE_PUBLIC_DIR}\\static`))
 server.use(`${apiRoute}/user`, userController);
 server.use(`${appRoute}`, appController);
 
