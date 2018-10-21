@@ -16,7 +16,7 @@ export const requestUser = (username) => (
     }
 );
 
-export const RECEIVE_USER = 'FETCH_USER';
+export const RECEIVE_USER = 'RECEIVE_USER';
 export const receiveUser = ({username, user}) => (
     {
         type: RECEIVE_USER,
@@ -54,7 +54,7 @@ function shouldFetchUser (
     if (!user) {
         return true;
     }
-    if (user.HasFailed) {
+    if (user.hasFailed) {
         return !user.isFetching;
     }
     return false;

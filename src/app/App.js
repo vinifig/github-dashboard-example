@@ -3,7 +3,7 @@ import Route from 'react-router-dom/Route';
 import Switch from 'react-router-dom/Switch';
 
 import Home from './scenes/home/Home';
-import User from './scenes/user/User';
+import UserContainer from './scenes/user/UserContainer';
 
 import Header from './components';
 
@@ -14,7 +14,7 @@ const App = () => (
     <Header className="App-Header"></Header>
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/user/:user" component={User} />
+      <Route path="/user/:user" component={UserContainer} />
     </Switch>
   </div>
 );
