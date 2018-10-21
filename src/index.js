@@ -1,8 +1,9 @@
 import app from './server';
 import http from 'http';
-import getEnvironment from './utils';
+import utils from './utils';
 const server = http.createServer(app);
 
+let { getEnvironment } = utils;
 
 let currentApp = app;
 

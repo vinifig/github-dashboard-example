@@ -1,2 +1,6 @@
 const getEnvironment = (key, defaultValue = null) => process.env[key] || defaultValue;
-export default getEnvironment;
+const isDev = () => getEnvironment("NODE_ENV", "development") === "production";
+export default {
+    getEnvironment,
+    isDev
+};
