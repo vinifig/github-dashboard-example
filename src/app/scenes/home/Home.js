@@ -5,7 +5,9 @@ import './Home.scss';
 class Home extends Component {
   render() {
     return (
-      <div>teste</div>
+      <div className="Home">
+        <p className="Home__message">Type a user to start...</p>
+      </div>
     );
   }
 }
