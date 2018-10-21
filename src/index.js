@@ -2,15 +2,11 @@ import app from './server';
 import http from 'http';
 
 const server = http.createServer(app);
+const getEnvironment = (key, defaultValue = null) => process.env[key] || defaultValue;
 
 let currentApp = app;
-let port = process.env.PORT || 3000;
 
-if (process.env.NODE_ENV === 'production') {
-  port = 443;
-}
-
-server.listen(port, error => {
+server.listen(getEnvironment("PORT", 3000), error => {
   if (error) {
     console.log(error);
   }
