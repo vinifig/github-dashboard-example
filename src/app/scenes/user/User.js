@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Route, Switch} from 'react-router-dom';
 import Repository from './scenes/repository/Repository';
-import './User.css';
+import './User.scss';
 
 class User extends Component {
   render() {

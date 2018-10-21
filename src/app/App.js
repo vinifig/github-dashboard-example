@@ -7,7 +7,7 @@ import User from './scenes/user/User';
 
 import Header from './components';
 
-import './App.css';
+import './App.scss';
 
 const App = () => (
   <div className="App">

@@ -3,18 +3,22 @@ import { StaticRouter } from 'react-router-dom';
 import { renderToString } from 'react-dom/server';
 import express, { Router } from 'express';
 import App from '../../app/App';
+import buildStore from '../../app/store/builder';
 
 const appController = Router();
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
+const store = buildStore();
 
 appController.use(express.static(process.env.RAZZLE_PUBLIC_DIR));
 
 appController.get('/*', (req, res) => {
     const context = {};
     const markup = renderToString(
-        <StaticRouter context={context} location={req.url}>
-            <App />
-        </StaticRouter>
+        <Provider store={store}>
+            <StaticRouter context={context} location={req.url}>
+                <App />
+            </StaticRouter>
+        </Provider>
     );
         
     if (context.url) {

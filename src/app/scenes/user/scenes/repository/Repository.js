@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './Repository.css';
+import './Repository.scss';
 
 class Repository extends Component {
   render() {

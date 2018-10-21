@@ -2,25 +2,13 @@ import App from './app/App';
 import basePath from './app/config';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
 import React from 'react';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import buildStore from './app/store/builder';
+
 import { Provider } from 'react-redux';
 import { hydrate } from 'react-dom';
 
-import thunkMiddleware from 'redux-thunk';
-import loggerMiddleware from 'redux-logger';
 
-import users from './app/services/reducers/users';
-
-
-const store = createStore(
-  combineReducers({
-    users
-  }),
-  applyMiddleware (
-    thunkMiddleware,
-    loggerMiddleware
-  )
-);
+const store = buildStore();
 
 
 hydrate(
