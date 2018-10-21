@@ -48,7 +48,7 @@ module.exports = {
         // For development, include source map
         appConfig.module.rules.push({
           test: /.scss$/,
-          use: ["style-loader", MiniCssExtractPlugin.loader, cssLoader, postCSSLoader, sassLoader]
+          use: ["style-loader", cssLoader, postCSSLoader, sassLoader]
         });
       } else {
         // For production, extract CSS
