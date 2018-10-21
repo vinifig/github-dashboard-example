@@ -71,6 +71,9 @@ const getUserRepositories = async (username) => {
 
 const getUserWithRepositories = async (username) => {
     let userResponse = await getUser(username);
+    if (userResponse === null) {
+        return null;
+    }
     let repositories = await getRepositoriesByUrl(userResponse.repository_api);
     let user = Object.assign({}, userResponse, {repositories});
     return user;
