@@ -1,21 +1,5 @@
 import { combineReducers } from 'redux';
-import { RECEIVE_USER, REQUEST_USER, SELECT_USER, FAILED_FETCH } from '../actions';
-
-
-function selectedUser (
-    state = {
-        username: ''
-    },
-    action
-) {
-    let { username } = action; 
-    switch (action.type) {
-        case SELECT_USER:
-            return Object.assign({}, state, {username});
-        default:
-            return state;
-    }
-}
+import { RECEIVE_USER, REQUEST_USER, FAILED_FETCH } from '../actions';
 
 function users (
     state = {
@@ -68,7 +52,6 @@ function gitHubUsers (
 }
 
 const usersReducers = combineReducers({
-    selectedUser,
     gitHubUsers
 })
 

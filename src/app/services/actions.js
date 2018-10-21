@@ -1,13 +1,5 @@
 import fetch from 'cross-fetch'
 
-export const SELECT_USER = 'SELECT_USER';
-export const selectUser = (username) => (
-    {
-        type: SELECT_USER,
-        username
-    }
-);
-
 export const REQUEST_USER = 'REQUEST_USER';
 export const requestUser = (username) => (
     {
