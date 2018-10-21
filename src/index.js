@@ -4,8 +4,13 @@ import http from 'http';
 const server = http.createServer(app);
 
 let currentApp = app;
+let port = process.env.PORT || 3000;
 
-server.listen(process.env.PORT || 3000, error => {
+if (process.env.NODE_ENV === 'production') {
+  port = 443;
+}
+
+server.listen(port, error => {
   if (error) {
     console.log(error);
   }
