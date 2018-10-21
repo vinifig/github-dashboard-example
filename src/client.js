@@ -1,4 +1,5 @@
 import App from './app/App';
+import basePath from './app/config';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
 import React from 'react';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
@@ -24,7 +25,7 @@ const store = createStore(
 
 hydrate(
   <Provider store = {store}>
-    <BrowserRouter>
+    <BrowserRouter basename={basePath} >
       <App />
     </BrowserRouter>
   </Provider>,
