@@ -1,8 +1,8 @@
 import app from './server';
 import http from 'http';
-
+import getEnvironment from './utils';
 const server = http.createServer(app);
-const getEnvironment = (key, defaultValue = null) => process.env[key] || defaultValue;
+
 
 let currentApp = app;
 
