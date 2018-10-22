@@ -11,7 +11,6 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    fetchUser: (username) => dispatch(fetchUser(username)),
     fetchUserIfNeeded: (username) => dispatch(fetchUserIfNeeded(username))
 });
 

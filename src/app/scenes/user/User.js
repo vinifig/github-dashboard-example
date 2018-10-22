@@ -22,11 +22,6 @@ class User extends Component {
     return this.props.match.params.user;
   }
 
-  updateUser () {
-    this.props.fetchUser(this.username);
-    this.fetched = this.username;
-  }
-
   updateUserIfNeeded () {
     this.props.fetchUserIfNeeded(this.username);
     this.fetched = this.username;
@@ -58,31 +53,31 @@ class User extends Component {
     let { match } = this.props;
 
     return (
-      <div className="User__row">
-        <UserProfile className="User__column User__profile" user={user}></UserProfile>
-        <div className="User__repositories_container User__column">
-          <Switch>
-            <Route exact path={`${match.path}/`} repositories={user.repositories} component={UserRepositories} />
-            <Route path={`${match.path}/repository/:repository`} component={Repository} />
-          </Switch>
-
+      <div>
+        <div className="User__row">
+          <div className="User__column User__row--divider">
+            <UserProfile className="User__column User__profile" user={user}></UserProfile>
+          </div>
         </div>
+        <div className="User__row">
+          <div className="User__repositories_container User__column">
+            <Switch>
+              <Route exact path={`${match.path}/`} repositories={user.repositories} component={UserRepositories} />
+              <Route path={`${match.path}/repository/:repository`} component={Repository} />
+            </Switch>
+          </div>
+        </div>
+
       </div>
     );
   }
 
   render() {
-    let { className = "", gitHubUser = {} } = this.props;
-    let { updateUser } = this; 
-    let updateUserParam = updateUser.bind(this);
-
-    // i don't know what's happening:/
-    let parentClass = className === undefined || className === 'undefined' ? "" : className; 
+    let { gitHubUser = {} } = this.props;
 
     return (
-      <div className={`${parentClass} User`} >
+      <div className="User">
         {this.getUserProfile(gitHubUser)}
-        <button onClick={updateUserParam}>atualizar</button>
       </div>
     );
   }
@@ -114,7 +109,7 @@ User.propTypes = {
     isFetching: PropTypes.bool,
     hasFailed: PropTypes.bool
   }),
-  fetchUser: PropTypes.func.isRequired
+  fetchUserIfNeeded: PropTypes.func.isRequired
 }
 
 export default User;

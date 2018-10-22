@@ -1,8 +1,16 @@
 .User {
 
-    &__column {
+    &__row {
         display: inline-flex;
+        &--divider {
+            border-bottom: 1px solid rgba(0,0,0, 0.2);
+        }
+    }
+
+    &__column {
+        display: flex;
         flex-wrap: wrap;
+        width: 100%;
     }
 
     &__profile {
