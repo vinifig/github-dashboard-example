@@ -1,0 +1,22 @@
+.UserProfile {
+    &__picture {
+        width: 150px;
+        border-radius: 100%;
+        box-shadow: 0 0px 3px 3px rgba(0, 0, 0, 0.3);;
+    }
+
+    &__title {
+        font-size:1.3rem;
+        margin: 0;
+
+        &__link {
+            color:blue;
+            text-decoration: underline;
+        }    
+    }
+
+    &__name {
+        font-size: 1rem;    
+        margin: 5px 0 0 0;
+    }
+}

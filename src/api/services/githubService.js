@@ -32,6 +32,7 @@ const getUsersReposApiPath = (username) => (
 );
 
 const extractGitHubUser = (user = {}) => ({
+    name: user.name,
     username: user.login,
     image: user.avatar_url,
     profile: user.html_url,

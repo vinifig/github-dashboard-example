@@ -3,6 +3,7 @@ import {Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Repository from './scenes/repository/Repository';
 import './User.scss';
+import UserProfile from './components/UserProfile/UserProfile';
 
 class User extends Component {
   
@@ -34,36 +35,35 @@ class User extends Component {
       this.updateUserIfNeeded();
     }
   }
+  
+  componentDidUpdate () {
+    if (this.fetched !== this.username) {
+      this.updateUserIfNeeded();
+    }
+  }
 
-  getUserProfile (user = null) {
-    if (user == null || user.username == null) {
+  getUserProfile ({user = null, isFetching = false, hasFailed = false}) {
+    if (user == null || isFetching || hasFailed) {
+      let message = hasFailed ? `We can't retrieve data for ${this.username}` : "Loading...";
       return (
-        <h2 className="User__title">Loading...</h2>
+        <p className="User__message">{message}</p>
       )
     }
     return (
-      <div class="User__profile Profile">
-        <h2 className="Profile__title">
-          <a className="Profile__link" href={user.profile} rel="noopener noreferrer" target="_blank">@{user.username}</a>
-        </h2>
-
-      </div>
+      <UserProfile className="User__profile" user={user}></UserProfile>
     );
   }
 
   render() {
-    let { className, match, gitHubUser } = this.props;
-    let { parseValue, updateUser } = this; 
-    let { isFetching, hasFailed, user = null } = gitHubUser || {}; 
+    let { className, match, gitHubUser = {} } = this.props;
+    let { updateUser } = this; 
 
     let updateUserParam = updateUser.bind(this);
 
     return (
       <div className={`${className} User`} >
-        {this.getUserProfile(user)}
+        {this.getUserProfile(gitHubUser)}
         <p>{match.url}</p>
-        <p>Está baixando: {parseValue(isFetching)}</p>
-        <p>deu erro: {parseValue(hasFailed)}</p>
         <button onClick={updateUserParam}>atualizar</button>
         <Switch>
           <Route path={`${match.path}/repository/:repository`} component={Repository} />
@@ -76,8 +76,10 @@ class User extends Component {
 User.propTypes = {
   gitHubUser: PropTypes.shape({
     user: PropTypes.shape({
+      name: PropTypes.string,
       username: PropTypes.string,
       profile: PropTypes.string,
+      image: PropTypes.string,
     }),
     isFetching: PropTypes.bool,
     hasFailed: PropTypes.bool
