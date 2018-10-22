@@ -6,7 +6,8 @@ import './User.scss';
 import UserProfile from './components/UserProfile/UserProfile';
 
 class User extends Component {
-  
+
+  //#region Logic
   constructor (props) {
     super(Object.freeze(props));
     this.fetched = null;
@@ -41,7 +42,10 @@ class User extends Component {
       this.updateUserIfNeeded();
     }
   }
-
+  //#endregion constructor
+  
+  //#region UI
+  
   getUserProfile ({user = null, isFetching = false, hasFailed = false}) {
     if (user == null || isFetching || hasFailed) {
       let message = hasFailed ? `We can't retrieve data for ${this.username}` : "Loading...";
@@ -55,15 +59,16 @@ class User extends Component {
   }
 
   render() {
-    let { className, match, gitHubUser = {} } = this.props;
+    let { className = "", match, gitHubUser = {} } = this.props;
     let { updateUser } = this; 
-
     let updateUserParam = updateUser.bind(this);
 
+    // i don't know what's happening:/
+    let parentClass = className === undefined || className === 'undefined' ? "" : className; 
+
     return (
-      <div className={`${className} User`} >
+      <div className={`${parentClass} User`} >
         {this.getUserProfile(gitHubUser)}
-        <p>{match.url}</p>
         <button onClick={updateUserParam}>atualizar</button>
         <Switch>
           <Route path={`${match.path}/repository/:repository`} component={Repository} />
@@ -71,6 +76,8 @@ class User extends Component {
       </div>
     );
   }
+  //#endregion
+
 }
 
 User.propTypes = {
@@ -80,6 +87,10 @@ User.propTypes = {
       username: PropTypes.string,
       profile: PropTypes.string,
       image: PropTypes.string,
+      email: PropTypes.string,
+      bio: PropTypes.string,
+      followers: PropTypes.number,
+      following: PropTypes.number,
     }),
     isFetching: PropTypes.bool,
     hasFailed: PropTypes.bool

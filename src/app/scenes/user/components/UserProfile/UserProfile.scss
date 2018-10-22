@@ -1,4 +1,5 @@
 .UserProfile {
+    min-width: 200px;
     &__picture {
         width: 150px;
         border-radius: 100%;
@@ -15,8 +16,32 @@
         }    
     }
 
-    &__name {
+    &__text {
         font-size: 1rem;    
         margin: 5px 0 0 0;
+        
+        &--bold {
+            font-weight: bolder;
+        }
+
+        &--light {
+            font-size:0.7rem;
+            color: rgba(0,0,0,0.7);
+        }
     }
+
+    
+    &__follow {
+        &__list {
+            padding: 0 20px;
+            margin-top: 10px;
+            
+            &__item {
+                width: 60px;
+                padding: 15px;
+                display: inline-flex;
+            }
+        }
+    }
+
 }
