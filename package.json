@@ -7,8 +7,7 @@
     "build": "razzle build",
     "build:start": "npm run build && npm run start:prod",
     "test": "razzle test --env=jsdom",
-    "start:prod": "node build/server.js",
-    "heroku-postbuild": "npm run build"
+    "start:prod": "node build/server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
