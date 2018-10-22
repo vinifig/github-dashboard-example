@@ -9,14 +9,14 @@ class UserRepositories extends Component {
     super(props);
     this.state = {
       sortMethods: {
-        "stars_asc": (repA, repB) => repA.stars - repB.stars,
-        "stars_desc": (repA, repB) => repB.stars - repA.stars,
-        "language_asc": (repA, repB) => this.compareStrings(repA.language, repB.language, 1),
-        "language_desc": (repA, repB) => this.compareStrings(repA.language, repB.language, -1),
-        "name_asc": (repA, repB) => this.compareStrings(repA.name, repB.name, 1),
-        "name_desc": (repA, repB) => this.compareStrings(repA.name, repB.name, -1),
+        "stars_up": (repA, repB) => repA.stars - repB.stars,
+        "stars_down": (repA, repB) => repB.stars - repA.stars,
+        "language_up": (repA, repB) => this.compareStrings(repA.language, repB.language, 1),
+        "language_down": (repA, repB) => this.compareStrings(repA.language, repB.language, -1),
+        "name_up": (repA, repB) => this.compareStrings(repA.name, repB.name, 1),
+        "name_down": (repA, repB) => this.compareStrings(repA.name, repB.name, -1),
       },
-      sortMethodName: "stars_desc"
+      sortMethodName: "stars_down"
     }
   }
 
@@ -55,25 +55,30 @@ class UserRepositories extends Component {
     )
   }
 
+  renderRepositoryItem (repository, i) {
+    let { match } = this.props;
+    return (
+      <div key={i} className="UserRepositories__list__item">
+        <h3 className="UserRepositories__list__item__title">
+          {repository.name}
+        </h3>
+        <h4 className="UserRepositories__list__item__language">({repository.language})</h4>
+        <h4 className="UserRepositories__list__item__stars">
+          Stars: {repository.stars}
+        </h4>
+        <Link className="UserRepositories__list__item__link" to={`${match.url}/repository/${repository.name}`} >Details</Link> | <a className="UserRepositories__list__item__link" rel="noopener noreferrer" target="_blank" href={repository.url}>Link</a>
+        <p className="UserRepositories__list__item__description">{repository.description || "No description for this repository."}</p>
+      </div>   
+    )
+  };
+
   getRepositories (repositories = []) {
     let {sortMethods, sortMethodName} = this.state;
-    let { match } = this.props;
     let sortMethod = sortMethods[sortMethodName];
+    let repositoryItemBuilder = this.renderRepositoryItem.bind(this);
     return repositories
       .sort(sortMethod)
-      .map((repository, i) => (
-        <div key={i} className="UserRepositories__list__item">
-          <h3 className="UserRepositories__list__item__title">
-            {repository.name}
-            <span>({repository.language})</span>
-          </h3>
-          <h4 className="UserRepositories__list__item__stars">
-            Stars: {repository.stars}
-          </h4>
-          <Link className="UserRepositories__list__item__link" to={`${match.url}/repository/${repository.name}`} >Details</Link> | <a className="UserRepositories__list__item__link" rel="noopener noreferrer" target="_blank" href={repository.url}>Link</a>
-          <p className="UserRepositories__list__item__description">{repository.description || "No description for this repository."}</p>
-        </div>   
-      ));
+      .map(repositoryItemBuilder);
   }
 
   render() {
@@ -83,7 +88,7 @@ class UserRepositories extends Component {
       <div className='UserRepositories'>
         <div className="UserRepositories__header">
           <h2 className="UserRepositories__header__title">Repositories</h2>
-          {this.getOrderMethodsSelect()}
+          Order by: {this.getOrderMethodsSelect()}
         </div>
         <div className="UserRepositories__list">
           {this.getRepositories(repositories)}

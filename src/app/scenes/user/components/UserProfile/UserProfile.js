@@ -19,7 +19,7 @@ export default function UserProfile ({className = "", user = {}}) {
             <p className="UserProfile_email">
                 <a href={`mailto:${user.email}`} className="UserProfile__text UserProfile__text--link">{user.email}</a>
             </p>
-            <p className="UserProfile__text UserProfile__text--light UserProfile__bio">{user.bio}</p>
+            <p className="UserProfile__text UserProfile__text--light UserProfile__bio">About: {user.bio}</p>
             <div className="UserProfile__follow__list">
                 <div className="UserProfile__follow__list__item UserProfile__followers">
                     {user.followers}

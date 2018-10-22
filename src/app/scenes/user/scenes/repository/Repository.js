@@ -5,14 +5,30 @@ import './Repository.scss';
 
 class Repository extends Component {
 
-  getRepositories (repository = null) {
+  getStarsCount (repository = null) {
+    if (repository === null) {
+      return "";
+    }
+    return ` - ${repository.stars} stars`;
+  }
+
+  renderRepository (repository = null) {
     if(repository === null) {
       return (
-        <div>Repository not found</div>
+        <div className="Repository__data__message">Repository not found</div>
       )
     }
     return (
-      <div>oi</div>   
+      <div>
+        <p className="Repository__data__description">{repository.description}</p>
+        <p className="Repository__data__language">Built in {repository.language}</p>
+        <p className="Repository__data__reference">
+          Available in:  
+          <a rel="noopener noreferrer" target="_blank" href={repository.url} className="Repository__data__reference__link">
+            GitHub
+          </a>
+        </p>
+      </div>
     );
   }
 
@@ -21,11 +37,11 @@ class Repository extends Component {
     return (
       <div className='Repository'>
         <div className="Repository__header">
-          <h2 className="Repository__header__title">Repository Name</h2>
           <Link to={`/user/${match.params.user}`}>Voltar</Link>
+          <h2 className="Repository__header__title">{match.params.repository}{this.getStarsCount(repository)}</h2>
         </div>
-        <div className="UserRepositores__list">
-          {this.getRepositories(repository)}
+        <div className="Repository__data">
+          {this.renderRepository(repository)}
         </div>
       </div>
     );
