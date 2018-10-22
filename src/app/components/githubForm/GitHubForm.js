@@ -16,6 +16,7 @@ class GitHubForm extends Component {
     }
 
     handleChange (e) {
+        e.preventDefault();
         this.setState(Object.assign(
             {}, 
             this.state, 

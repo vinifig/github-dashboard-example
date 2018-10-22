@@ -13,7 +13,7 @@ export default function UserProfile ({className = "", user = {}}) {
             </h2>
             <p className="UserProfile__name">
                 <span className="UserProfile__text UserProfile__text--bold">
-                    ({user.name})
+                    {user.name}
                 </span>
             </p>
             <p className="UserProfile_email">

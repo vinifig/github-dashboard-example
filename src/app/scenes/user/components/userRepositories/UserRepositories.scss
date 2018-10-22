@@ -4,7 +4,7 @@
     display: block;
 
     &__header {
-        display: flex;
+        display: block;
         width:100%;
         &__title {
             margin: 0 auto;
@@ -12,13 +12,41 @@
             text-align: center;
         }
     }
+
     &__list {
-        display: flex;
+        display: inline-block;
         width:100%;
-        &__title {
-            margin: 0 auto;
-            font-weight: bolder;
-            text-align: center;
+        &__item {
+            transition: 200ms;
+            display: inline-block;
+            border: 1px solid rgba(0,0,0,0.2);
+            width: 300px;
+            margin: 10px 20px;
+            background-color: transparent;
+            padding: 5px 10px;
+            vertical-align: text-top;
+            &:hover {
+                background-color: rgba(0,0,0,0.1);
+            }
+
+            &__title {
+                font-weight: bolder;
+                text-align: center;
+                span {
+                    margin-left: 5px;
+                    font-size: 0.7rem;
+                    color: rgba(0,0,0,0.6);
+                }
+            }
+
+            &__description {
+                height: 60px;
+                font-size: 0.7rem;
+                vertical-align: text-top;
+            }
         }
     }
+}
+
+.UserRepositores {
 }

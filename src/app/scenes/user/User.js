@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Repository from './scenes/repository/Repository';
 import './User.scss';
 import UserProfile from './components/userProfile/UserProfile';
-import UserRepositories from './components/userRepositories/UserRepositories';
+import UserRepositories from './components/userRepositories/UserRepositoriesContainer';
 
 class User extends Component {
 
