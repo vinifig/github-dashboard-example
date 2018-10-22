@@ -1,9 +1,23 @@
-import app from './server';
 import http from 'http';
+import fs from 'fs';
+import dotenv from 'dotenv';
+import app from './server';
 import utils from './utils';
+
+let { getEnvironment, isDev } = utils;
+
+if (isDev()) {
+  try {
+    let envList = dotenv.parse(fs.readFileSync('./.env'));
+    for (let key in envList) {
+      process.env[key] = envList[key];
+    }
+  } catch (e) {
+  }
+}
+
 const server = http.createServer(app);
 
-let { getEnvironment } = utils;
 
 let currentApp = app;
 

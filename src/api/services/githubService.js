@@ -1,7 +1,28 @@
 import axios from "axios";
+import btoa from "btoa";
+import utils from "../../utils";
+
+
+const { getEnvironment } = utils;
 
 const apiPath = "https://api.github.com";
 const usersApiPath = `${apiPath}/users`;
+
+const getAuthKey = (username, password) => btoa(`${username}:${password}`);
+
+const getHeaders = () => {
+    let username = getEnvironment("USERNAME");
+    let password = getEnvironment("PASSWORD");
+    return {
+        Authorization: `Basic ${getAuthKey(username, password)}`, 
+    };
+}
+
+const getResource = async (uri) => (
+    await axios.get(uri, {
+        headers: getHeaders()
+    })
+)
 
 const getUsersReposApiPath = (username) => (
     `${usersApiPath}/${username}/repos`
@@ -28,7 +49,7 @@ const extractGitHubRepositories = (repos = []) => repos.map((repo = {})=> ({
 
 const getUser = async (username) => {
     try {
-        let { data } = await axios.get(`${usersApiPath}/${username}`);
+        let { data } = await getResource(`${usersApiPath}/${username}`);
         let user = extractGitHubUser(data);
         return user;
     } catch (e) {
@@ -45,7 +66,7 @@ const getUser = async (username) => {
 
 const getRepositoriesByUrl = async (repository_api) => {
     try {
-        let { data } = await axios.get(repository_api);
+        let { data } = await getResource(repository_api);
         if (!Array.isArray(data)) {
             return [];
         }

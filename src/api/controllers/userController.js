@@ -12,6 +12,7 @@ userController.get('/:username', async (req, res) => {
             .status(status)
             .json(user);
     } catch (e) {
+        console.log(e);
         return res
             .status(500)
             .json(e);
@@ -28,6 +29,7 @@ userController.get('/:username/repositories', async (req, res) => {
             .status(status)
             .json(repos);
     } catch (e) {
+        console.log(e);
         return res
             .status(500)
             .json(e);
