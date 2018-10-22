@@ -5,14 +5,19 @@ import './Repository.scss';
 
 class Repository extends Component {
 
-  getRepositories (repositories = []) {
-    return repositories.map((repository) => (
+  getRepositories (repository = null) {
+    if(repository === null) {
+      return (
+        <div>Repository not found</div>
+      )
+    }
+    return (
       <div>oi</div>   
-    ));
+    );
   }
 
   render() {
-    let {match, repositories = []} = this.props;
+    let {match, repository} = this.props;
     return (
       <div className='Repository'>
         <div className="Repository__header">
@@ -20,7 +25,7 @@ class Repository extends Component {
           <Link to={`/user/${match.params.user}`}>Voltar</Link>
         </div>
         <div className="UserRepositores__list">
-          {this.getRepositories(repositories)}
+          {this.getRepositories(repository)}
         </div>
       </div>
     );
@@ -28,15 +33,13 @@ class Repository extends Component {
 }
 
 Repository.propTypes = {
-  repositories: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      stars: PropTypes.number,
-      language: PropTypes.string,
-      description: PropTypes.string,
-      url: PropTypes.string,
-    })
-  )
+  repository: PropTypes.shape({
+    name: PropTypes.string,
+    stars: PropTypes.number,
+    language: PropTypes.string,
+    description: PropTypes.string,
+    url: PropTypes.string,
+  }),
 }
 
 export default Repository;

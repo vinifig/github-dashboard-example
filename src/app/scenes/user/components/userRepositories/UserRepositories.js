@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './UserRepositories.scss';
 
 class UserRepositories extends Component {
@@ -57,6 +57,7 @@ class UserRepositories extends Component {
 
   getRepositories (repositories = []) {
     let {sortMethods, sortMethodName} = this.state;
+    let { match } = this.props;
     let sortMethod = sortMethods[sortMethodName];
     return repositories
       .sort(sortMethod)
@@ -69,7 +70,7 @@ class UserRepositories extends Component {
           <h4 className="UserRepositories__list__item__stars">
             Stars: {repository.stars}
           </h4>
-          <a className="UserRepositories__list__item__link" rel="noopener noreferrer" target="_blank" href={repository.url}>Link</a>
+          <Link className="UserRepositories__list__item__link" to={`${match.url}/repository/${repository.name}`} >Details</Link> | <a className="UserRepositories__list__item__link" rel="noopener noreferrer" target="_blank" href={repository.url}>Link</a>
           <p className="UserRepositories__list__item__description">{repository.description || "No description for this repository."}</p>
         </div>   
       ));
@@ -77,7 +78,7 @@ class UserRepositories extends Component {
 
   render() {
     let { repositories = []} = this.props;
-    let {sortMethods, sortMethodName} = this.state;
+    
     return (
       <div className='UserRepositories'>
         <div className="UserRepositories__header">
