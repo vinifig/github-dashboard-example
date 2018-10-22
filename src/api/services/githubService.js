@@ -13,6 +13,9 @@ const getAuthKey = (username, password) => btoa(`${username}:${password}`);
 const getHeaders = () => {
     let username = getEnvironment("USERNAME");
     let password = getEnvironment("PASSWORD");
+    if (!username || !password) {
+        return {};
+    }
     return {
         Authorization: `Basic ${getAuthKey(username, password)}`, 
     };
