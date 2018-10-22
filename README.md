@@ -3,8 +3,8 @@
 > Github dashboard built in with Razzle and React
 
 This project consist of two modules:
-    * app
-    * api (`BFF API` and static file server for app)
+ * app
+ * api (`BFF API` and static file server for app)
 
 ## Modules
 
