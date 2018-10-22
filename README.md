@@ -81,8 +81,9 @@ You can try a live example in [https://github-dashboard-example.herokuapp.com/](
         * userRepositoryData
     * Ensure that users columns are getting one below the other in small screens
     * Ensure that users columns are getting aligned with each other in larger screens
-    
 * Add jsdoc comments to all modules and components
 * Add jsdoc comments to all methods
+* change github image
+* change favicon
 
 
