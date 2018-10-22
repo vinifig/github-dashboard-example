@@ -1,6 +1,10 @@
+$small-screen: 500px;
 .UserRepositories {
     min-width: 200px;
     width: calc(100vw - 200px);
+    @media screen and (max-width: $small-screen) {
+        width: calc(100vw - 20px);
+    }
     display: block;
 
     &__header {
@@ -20,11 +24,12 @@
             transition: 200ms;
             display: inline-block;
             border: 1px solid rgba(0,0,0,0.2);
-            width: 300px;
-            margin: 10px 20px;
+            width: 280px;
             background-color: transparent;
-            padding: 5px 10px;
             vertical-align: text-top;
+            margin: 10px 20px;
+            padding: 5px 10px;
+            
             &:hover {
                 background-color: rgba(0,0,0,0.1);
             }
@@ -46,9 +51,12 @@
                 font-size: 0.7rem;
                 vertical-align: text-top;
             }
+            
+            @media screen and (max-width: $small-screen) {
+                margin: 10px 0px;
+                padding: 5px 0px;
+            }
+            
         }
     }
-}
-
-.UserRepositores {
 }

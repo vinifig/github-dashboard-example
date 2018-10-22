@@ -65,6 +65,10 @@ npm run build
 npm run build:start
 ```
 
+## Running example
+
+You can try a live example in [https://github-dashboard-example.herokuapp.com/](https://github-dashboard-example.herokuapp.com/)
+
 ## TODO
 
 * Verify razzle vulnerability
@@ -80,3 +84,5 @@ npm run build:start
     
 * Add jsdoc comments to all modules and components
 * Add jsdoc comments to all methods
+
+

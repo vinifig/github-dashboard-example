@@ -1,6 +1,10 @@
+$small-screen: 500px;
 .Repository {
     min-width: 200px;
     width: calc(100vw - 200px);
+    @media screen and (max-width: $small-screen) {
+        width: calc(100vw - 20px);
+    }
     display: block;
 
     &__data {

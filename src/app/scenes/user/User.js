@@ -59,8 +59,8 @@ class User extends Component {
             <UserProfile className="User__column User__profile" user={user}></UserProfile>
           </div>
         </div>
-        <div className="User__row">
-          <div className="User__repositories_container User__column">
+        <div className="User__repositories User__row">
+          <div className="User__repositories__container User__column">
             <Switch>
               <Route exact path={`${match.path}/`} repositories={user.repositories} component={UserRepositories} />
               <Route path={`${match.path}/repository/:repository`} component={Repository} />
