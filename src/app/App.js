@@ -15,7 +15,24 @@ import './App.scss';
 
 class App extends Component {
 
+  constructor (props) {
+    super(props);
+    let hasUserName = /\/user\/([a-zA-Z])*\w+/.test(props.location.pathname);
+    let baseUsername = "";
+    if (hasUserName) {
+      baseUsername = props.location.pathname.split('/')[2];
+    }
+    this.state = {
+      username: baseUsername
+    }
+  }
+
   onUserChange (username = "") {
+    this.setState(Object.assign(
+      {},
+      this.state,
+      {username}
+    ))
     if (!!username) {
       this.props.history.push(`/user/${username}`);
     } else {
@@ -28,7 +45,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header className="App__Header"></Header>
-        <GitHubForm onUserChange={wrappedUserChanged} className="App__GitHubForm"></GitHubForm>
+        <GitHubForm onUserChange={wrappedUserChanged} baseValue={this.state.username} className="App__GitHubForm"></GitHubForm>
         <Switch>
           <Route className="App__Home" exact path="/" component={Home} />
           <Route className="App__User" path="/user/:user" component={UserContainer} />

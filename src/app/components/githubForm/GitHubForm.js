@@ -6,7 +6,7 @@ class GitHubForm extends Component {
     constructor (props) {
         super(props)
         this.state = {
-            username: ''
+            username: this.props.baseValue
         };
     }
 
