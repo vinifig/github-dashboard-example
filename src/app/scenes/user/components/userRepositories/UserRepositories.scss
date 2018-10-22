@@ -1,0 +1,14 @@
+.UserRepositories {
+    min-width: 200px;
+    max-width: calc(100vw - 200px);
+    display: flex;
+
+    &__header {
+        width: 300px;
+        // margin: 0 auto;
+        &__title {
+          
+
+        }
+    }
+}

@@ -1,25 +1,39 @@
 .UserProfile {
     min-width: 200px;
+    max-width: 200px;
+    text-align: center;
+
+    > * {
+        margin: 0 auto;
+    }
+
     &__picture {
         width: 150px;
+        height: 150px;
+        display: flex;
         border-radius: 100%;
         box-shadow: 0 0px 3px 3px rgba(0, 0, 0, 0.3);;
     }
 
     &__title {
         font-size:1.3rem;
-        margin: 0;
+    }
 
-        &__link {
-            color:blue;
-            text-decoration: underline;
-        }    
+    &__name {
+        font-size:0.7rem;
     }
 
     &__text {
         font-size: 1rem;    
-        margin: 5px 0 0 0;
-        
+        margin: 5px auto;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        &--link {
+            color:blue;
+            text-decoration: underline;
+        }    
+
         &--bold {
             font-weight: bolder;
         }
@@ -38,7 +52,7 @@
             
             &__item {
                 width: 60px;
-                padding: 15px;
+                padding: 10px;
                 display: inline-flex;
             }
         }

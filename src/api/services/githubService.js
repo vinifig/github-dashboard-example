@@ -48,7 +48,7 @@ const extractGitHubRepositories = (repos = []) => repos.map((repo = {})=> ({
     stars: repo.stargazers_count,
     language: repo.language,
     description: repo.description,
-    url: repo.html_url
+    url: repo.html_url,
 }))
 
 const getUser = async (username) => {

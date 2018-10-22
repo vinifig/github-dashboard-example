@@ -3,7 +3,8 @@ import {Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Repository from './scenes/repository/Repository';
 import './User.scss';
-import UserProfile from './components/UserProfile/UserProfile';
+import UserProfile from './components/userProfile/UserProfile';
+import UserRepositories from './components/userRepositories/UserRepositories';
 
 class User extends Component {
 
@@ -53,13 +54,25 @@ class User extends Component {
         <p className="User__message">{message}</p>
       )
     }
+
+    let { match } = this.props;
+
     return (
-      <UserProfile className="User__profile" user={user}></UserProfile>
+      <div className="User__row">
+        <UserProfile className="User__column User__profile" user={user}></UserProfile>
+        <div className="User__repositories_container User__column">
+          <Switch>
+            <Route exact path={`${match.path}/`} repositories={user.repositories} component={UserRepositories} />
+            <Route path={`${match.path}/repository/:repository`} component={Repository} />
+          </Switch>
+
+        </div>
+      </div>
     );
   }
 
   render() {
-    let { className = "", match, gitHubUser = {} } = this.props;
+    let { className = "", gitHubUser = {} } = this.props;
     let { updateUser } = this; 
     let updateUserParam = updateUser.bind(this);
 
@@ -70,9 +83,6 @@ class User extends Component {
       <div className={`${parentClass} User`} >
         {this.getUserProfile(gitHubUser)}
         <button onClick={updateUserParam}>atualizar</button>
-        <Switch>
-          <Route path={`${match.path}/repository/:repository`} component={Repository} />
-        </Switch>
       </div>
     );
   }
@@ -91,6 +101,15 @@ User.propTypes = {
       bio: PropTypes.string,
       followers: PropTypes.number,
       following: PropTypes.number,
+      repositories: PropTypes.arrayOf(
+        PropTypes.shape({
+          name: PropTypes.string,
+          stars: PropTypes.number,
+          language: PropTypes.string,
+          description: PropTypes.string,
+          url: PropTypes.string,
+        })
+      )
     }),
     isFetching: PropTypes.bool,
     hasFailed: PropTypes.bool

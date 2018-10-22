@@ -1,5 +1,16 @@
 .User {
+
+    &__column {
+        display: inline-flex;
+        flex-wrap: wrap;
+    }
+
     &__profile {
+        margin-top: 20px;
+        padding: 5px 30px;
+    }
+
+    &__repositories_container {
         margin-top: 20px;
         padding: 5px 30px;
     }
