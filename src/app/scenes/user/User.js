@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './User.scss';
 import UserProfile from './components/userProfile/UserProfile';
 import UserRepositories from './components/userRepositories/UserRepositoriesContainer';
 import Repository from './scenes/repository/RepositoryContainer';
+import './User.scss';
 
 class User extends Component {
 
